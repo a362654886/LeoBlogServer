@@ -28,6 +28,8 @@ jobs: # 构建的任务，一个工作流有多个构建任务，
       - name: install
         run: npm install
 
+      - name: Deploy to Server # 执行部署任务
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest   
       # 将工作目录下的文件全部拷贝到部署服务器的工作目录
         scp: |
             ./* => /www/github-actions-express
