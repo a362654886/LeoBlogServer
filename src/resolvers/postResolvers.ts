@@ -5,7 +5,6 @@ export const postResolvers = {
   Query: {
     posts: async (parent: any, args: any) => {
       try {
-        console.log("s")
         return {
           data: await prisma.post.findMany({
             include: {
