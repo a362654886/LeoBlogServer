@@ -27,11 +27,11 @@ jobs: # 构建的任务，一个工作流有多个构建任务，
           
     # 步骤3 下载项目依赖    
     - name: install
-      run: yarn install
+      run: npm install
       
     # 步骤4 打包node项目
     - name: build
-      run: npm run build # 此处是你node项目的构建脚本
+      run: tsc # 此处是你node项目的构建脚本
       
     # 步骤5 部署项目
     - name: deploy
@@ -42,4 +42,4 @@ jobs: # 构建的任务，一个工作流有多个构建任务，
         # 发布到指定分支
         branch: gh-pages
         # 指定发布的打包后的文件
-        folder: xx/xxx/xx 
+        folder: dist/index.js 
