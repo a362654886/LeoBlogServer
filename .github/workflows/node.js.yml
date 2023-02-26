@@ -33,13 +33,4 @@ jobs: # 构建的任务，一个工作流有多个构建任务，
     - name: build
       run: tsc # 此处是你node项目的构建脚本
       
-    # 步骤5 部署项目
-    - name: deploy
-      uses: JamesIves/github-pages-deploy-action@4.1.6
-      with:
-        # 供用户访问的github access_token 下面的变量是在准备阶段自定义的变量
-        access_token: ${{ secrets.LEOBLOGSERVER }} 
-        # 发布到指定分支
-        branch: gh-pages
-        # 指定发布的打包后的文件
-        folder: dist
+      run: node ./dist/index.js 
