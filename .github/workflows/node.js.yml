@@ -23,6 +23,8 @@ jobs:
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest 
         with:
           host: ${{ secrets.leoBlogServer }}
+          user: ${{ secrets.leoBlogServer }}
+          pass: ${{ secrets.leoBlogServer }}
 
           # 由于网路情况，很容易超时，设置为60s
           connect_timeout: 60s
