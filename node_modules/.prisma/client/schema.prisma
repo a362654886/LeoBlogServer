@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb+srv://leilu20140423:AAaa123581321@cluster0.ki7h35k.mongodb.net/LeoBolg?retryWrites=true&w=majority"
+}
+
+model Post {
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  typeIds  String[]   @db.ObjectId
+  title    String
+  context  String
+  createAt String?
+  types    PostType[] @relation(fields: [typeIds], references: [id])
+
+  @@map("post")
+}
+
+model PostType {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  postIds String[] @db.ObjectId
+  type    String
+  posts   Post[]   @relation(fields: [postIds], references: [id])
+
+  @@map("postType")
+}
