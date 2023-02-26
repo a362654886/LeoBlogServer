@@ -22,9 +22,9 @@ jobs:
       - name: Deploy to Server # 执行部署任务
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest 
         with:
-          host: ${{ secrets.leoBlogServer }}
-          user: ${{ secrets.leoBlogServer }}
-          pass: ${{ secrets.leoBlogServer }}
+          host: ${{ secrets.LEOBLOGSERVER }}
+          user: ${{ secrets.LEOBLOGSERVER }}
+          pass: ${{ secrets.LEOBLOGSERVER }}
 
           # 由于网路情况，很容易超时，设置为60s
           connect_timeout: 60s
