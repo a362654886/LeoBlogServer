@@ -19,5 +19,6 @@
   },
   "devDependencies": {
     "prisma": "^4.10.1"
-  }
+  },
+  "homepage": "https://a362654886.github.io/LeoBlogServer"
 }
