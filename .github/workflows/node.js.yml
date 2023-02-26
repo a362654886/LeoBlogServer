@@ -33,4 +33,4 @@ jobs: # 构建的任务，一个工作流有多个构建任务，
     - name: build
       run: tsc # 此处是你node项目的构建脚本
       
-      run: node ./dist/index.js 
+    - run: node ./dist/index.js 
