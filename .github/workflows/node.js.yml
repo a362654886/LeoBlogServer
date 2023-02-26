@@ -32,6 +32,8 @@ jobs: # 构建的任务，一个工作流有多个构建任务，
       - name: build
         run: tsc # 此处是你node项目的构建脚本
 
-      - name: run project
+      - name: run setting
         run: npm config set user 0
+
+      - name: run project
         run: npm run start
