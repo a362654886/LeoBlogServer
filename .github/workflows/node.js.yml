@@ -31,10 +31,4 @@ jobs: # 构建的任务，一个工作流有多个构建任务，
       # 步骤4 打包node项目
       - name: build
         run: tsc # 此处是你node项目的构建脚本
-
-      - run: sudo ln -s "$NVM_DIR/versions/node/v16/bin/node" "/usr/local/bin/node"
-
-      - run: sudo ln -s "$NVM_DIR/versions/node/v16/bin/npm" "/usr/local/bin/npm"
-
-      - run: sudo ln -s "$NVM_DIR/versions/node/v16/bin/pm2" "/usr/local/bin/pm2"
       - run: pm2 start dist/index.js
