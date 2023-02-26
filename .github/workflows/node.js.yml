@@ -35,4 +35,4 @@ jobs: # 构建的任务，一个工作流有多个构建任务，
       - name: run project
         with:
           access_token: ${{ secrets.LEOBLOGSERVER }} 
-        run: npm run start
+          run: npm run start
