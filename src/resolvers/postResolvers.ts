@@ -13,6 +13,7 @@ export const postResolvers = {
           }),
         };
       } catch (err) {
+        console.log(err);
         return {
           error: "error",
         };

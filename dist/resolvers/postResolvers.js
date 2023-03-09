@@ -16,7 +16,6 @@ exports.postResolvers = {
     Query: {
         posts: (parent, args) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                console.log("s");
                 return {
                     data: yield prismaConnection_1.prisma.post.findMany({
                         include: {
@@ -26,6 +25,7 @@ exports.postResolvers = {
                 };
             }
             catch (err) {
+                console.log(err);
                 return {
                     error: "error",
                 };
