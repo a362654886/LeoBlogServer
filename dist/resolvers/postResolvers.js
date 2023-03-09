@@ -47,22 +47,6 @@ exports.postResolvers = {
                 };
             }
         }),
-        postTypes: (parent, args) => __awaiter(void 0, void 0, void 0, function* () {
-            try {
-                return {
-                    data: yield prismaConnection_1.prisma.postType.findMany({
-                        include: {
-                            posts: true,
-                        },
-                    }),
-                };
-            }
-            catch (err) {
-                return {
-                    error: "error",
-                };
-            }
-        }),
     },
     Mutation: {
         addPost: (parent, args) => __awaiter(void 0, void 0, void 0, function* () {
@@ -86,11 +70,36 @@ exports.postResolvers = {
                 };
             }
         }),
-        addPostType: (parent, args) => __awaiter(void 0, void 0, void 0, function* () {
+        updatePost: (parent, args) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                const result = yield prismaConnection_1.prisma.postType.create({
+                const ids = args.types.map((type) => new bson_1.ObjectId(type).toString());
+                const result = yield prismaConnection_1.prisma.post.update({
+                    where: {
+                        id: new bson_1.ObjectId(args.id).toString(),
+                    },
                     data: {
-                        type: args.type,
+                        typeIds: ids,
+                        title: args.title,
+                        context: args.context,
+                    },
+                });
+                console.log(result);
+                return {
+                    data: result,
+                };
+            }
+            catch (err) {
+                console.log(err);
+                return {
+                    error: "error",
+                };
+            }
+        }),
+        deletePost: (parent, args) => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const result = yield prismaConnection_1.prisma.post.delete({
+                    where: {
+                        id: new bson_1.ObjectId(args.id).toString(),
                     },
                 });
                 return {
@@ -99,7 +108,7 @@ exports.postResolvers = {
             }
             catch (err) {
                 return {
-                    result: "error",
+                    error: "error",
                 };
             }
         }),

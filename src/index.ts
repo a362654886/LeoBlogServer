@@ -1,8 +1,14 @@
-import { ApolloServer } from "apollo-server";
+import { ApolloServer, gql } from "apollo-server";
 import { resolvers } from "./resolvers";
-import { typeDefs } from "./schema";
+import { postDefs } from "./schema/postSchema";
+import { postTypeDefs } from "./schema/postTypeSchema";
 
 const port = process.env.PORT || 80;
+
+const typeDefs = gql`
+  ${postTypeDefs}
+  ${postDefs}
+`;
 
 const server = new ApolloServer({ resolvers, typeDefs });
 

@@ -34,21 +34,6 @@ export const postResolvers = {
         };
       }
     },
-    postTypes: async (parent: any, args: any) => {
-      try {
-        return {
-          data: await prisma.postType.findMany({
-            include: {
-              posts: true,
-            },
-          }),
-        };
-      } catch (err) {
-        return {
-          error: "error",
-        };
-      }
-    },
   },
   Mutation: {
     addPost: async (
@@ -79,16 +64,26 @@ export const postResolvers = {
         };
       }
     },
-    addPostType: async (
+    updatePost: async (
       parent: any,
       args: {
-        type: string;
+        id: string;
+        types: string[];
+        title: string;
+        context: string;
       }
     ) => {
       try {
-        const result = await prisma.postType.create({
+        const ids = args.types.map((type) => new ObjectId(type).toString());
+
+        const result = await prisma.post.update({
+          where: {
+            id: new ObjectId(args.id).toString(),
+          },
           data: {
-            type: args.type,
+            typeIds: ids,
+            title: args.title,
+            context: args.context,
           },
         });
         return {
@@ -96,7 +91,28 @@ export const postResolvers = {
         };
       } catch (err) {
         return {
-          result: "error",
+          error: "error",
+        };
+      }
+    },
+    deletePost: async (
+      parent: any,
+      args: {
+        id: string;
+      }
+    ) => {
+      try {
+        const result = await prisma.post.delete({
+          where: {
+            id: new ObjectId(args.id).toString(),
+          },
+        });
+        return {
+          data: result,
+        };
+      } catch (err) {
+        return {
+          error: "error",
         };
       }
     },
